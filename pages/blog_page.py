@@ -7,6 +7,7 @@ class BlogPage(BasePage):
     slug = "/the-capsized-eight"
     shameless_link_locator = (By.LINK_TEXT, "Shameless")
     technology_link_locator = (By.LINK_TEXT, "Technology")
+    business_link_locator = (By.LINK_TEXT, "Business")
     topic_label_locator = (By.CLASS_NAME, "__highlight")
 
     def navigate_to_page(self):
@@ -23,3 +24,7 @@ class BlogPage(BasePage):
     @property
     def technology_link(self):
         return self.get_present_element(self.technology_link_locator)
+
+    @property
+    def business_link(self):
+        return self.get_present_element(self.business_link_locator)

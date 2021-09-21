@@ -18,14 +18,24 @@ class BlogTests(BaseTest):
 
         self.assertTrue(self.blog_page.topic_label.text == "Shameless")
 
+        time.sleep(5)
+
 
     def test_navigate_to_technology_posts(self):
-        log_message("Navigates to Technology blog posts and verifies that the topic label is Shameless.")
+        log_message("Navigates to Technology blog posts and verifies that the topic label is Technology.")
         self.blog_page.navigate_to_page()
         self.blog_page.technology_link.click()
 
         self.assertTrue(self.blog_page.topic_label.text == "Technology")
 
+        time.sleep(5)
+
+    def test_navigate_to_business_posts(self):
+        log_message("Navigates to Business blog posts and verifies that the topic label is Business.")
+        self.blog_page.navigate_to_page()
+        self.blog_page.business_link.click()
+
+        self.assertTrue(self.blog_page.topic_label.text == "Business")
 
         time.sleep(5)
 
