@@ -4,15 +4,15 @@ import definitions
 # REPORTING CONSTANTS
 SCREENSHOT_DIR = definitions.ROOT_DIR + "/screenshots/"
 REPORTS_DIR = definitions.ROOT_DIR + "/reports/"
-PROJECT_NAME = "Infinum"
-REPORT_NAME = "Infinum Web Regression Test"
+PROJECT_NAME = "Productive"
+REPORT_NAME = "Productive Web Regression Test"
 
 # ENVIRONMENTS
 DEV = "dev"
 STAGING = "staging"
 
 # ENVIRONMENT CONSTANTS
-URLS = {DEV: "https://beta.infinum.com", STAGING: "https://infinum.co"}
+URLS = {DEV: "https://productive.io", STAGING: ""}
 
 # DRIVER CONSTANTS
 DRIVER_TIMEOUT = 30
