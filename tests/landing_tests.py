@@ -13,6 +13,9 @@ class LandingTests(BaseTest):
         log_message("Navigates to Productive and clicks on button.")
 
         self.landing_page.navigate_to_page()
+        log_message("Otvorila se stranica")
         self.landing_page.agree_button_link.click()
+        log_message("Button I agree je kliknut")
         time.sleep(5)
-        self.assertTrue(self, self.landing_page.button_exists_locator == 0)
+        self.assertTrue(self, self.landing_page.button_exists_link == 0)
+        log_message("Provjera jel i dalje postoji I agree button")
