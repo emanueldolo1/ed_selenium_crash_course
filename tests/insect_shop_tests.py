@@ -57,5 +57,7 @@ class BlogTests(BaseTest):
         self.blog_page.insect_store_password_field.send_keys(password)
         log_message("Upisali smo password")
         self.blog_page.insect_store_register_button.click()
+        self.assertTrue(self.blog_page.insect_store_user_registered.text == "User registered")
+        log_message("User je uspjesno registriran!")
         time.sleep(2)
 

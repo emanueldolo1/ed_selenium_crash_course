@@ -12,6 +12,7 @@ class BlogPage(BasePage):
     insect_store_name_field_locator = (By.CSS_SELECTOR, "input[type='text']")
     insect_store_password_field_locator = (By.CSS_SELECTOR, "input[type='password']")
     insect_store_register_button_locator = (By.CSS_SELECTOR, "button[name='register']")
+    insect_store_user_registered_locator = (By.XPATH, "//div[@id='main']//p[.='User registered']")
 
     def navigate_to_page(self):
         self.navigate(self.slug)
@@ -43,3 +44,7 @@ class BlogPage(BasePage):
     @property
     def insect_store_register_button(self):
         return self.get_present_element(self.insect_store_register_button_locator)
+
+    @property
+    def insect_store_user_registered(self):
+        return self.get_present_element(self.insect_store_user_registered_locator)
