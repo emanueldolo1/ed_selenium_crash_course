@@ -12,7 +12,7 @@ DEV = "dev"
 STAGING = "staging"
 
 # ENVIRONMENT CONSTANTS
-URLS = {DEV: "https://beta.infinum.com", STAGING: "https://infinum.co"}
+URLS = {DEV: "https://qaworkshop.netlify.app/", STAGING: "https://infinum.co"}
 
 # DRIVER CONSTANTS
 DRIVER_TIMEOUT = 30

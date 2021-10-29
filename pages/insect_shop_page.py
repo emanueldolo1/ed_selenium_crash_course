@@ -4,11 +4,14 @@ from selenium.webdriver.common.by import By
 
 class BlogPage(BasePage):
 
-    slug = "/the-capsized-eight"
+    slug = ""
     shameless_link_locator = (By.LINK_TEXT, "Shameless")
     technology_link_locator = (By.LINK_TEXT, "Technology")
     business_link_locator = (By.LINK_TEXT, "Business")
     topic_label_locator = (By.CLASS_NAME, "__highlight")
+    insect_store_name_field_locator = (By.CSS_SELECTOR, "input[type='text']")
+    insect_store_password_field_locator = (By.CSS_SELECTOR, "input[type='password']")
+    insect_store_register_button_locator = (By.CSS_SELECTOR, "button[name='register']")
 
     def navigate_to_page(self):
         self.navigate(self.slug)
@@ -28,3 +31,15 @@ class BlogPage(BasePage):
     @property
     def business_link(self):
         return self.get_present_element(self.business_link_locator)
+
+    @property
+    def insect_store_name_field(self):
+        return self.get_present_element(self.insect_store_name_field_locator)
+
+    @property
+    def insect_store_password_field(self):
+        return self.get_present_element(self.insect_store_password_field_locator)
+
+    @property
+    def insect_store_register_button(self):
+        return self.get_present_element(self.insect_store_register_button_locator)
