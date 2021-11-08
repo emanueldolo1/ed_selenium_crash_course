@@ -77,8 +77,8 @@ An individual test can also be run by right-clicking on it and selecting "Run Un
 - The default environment is `dev`, buy you can specify a different one using the `env` argument:
     * `python3 runner.py --env=prod`
 - You can specify test scope using the `scope` argument. You can run an entire class or just one test:
-    * `python3 runner.py --scope=tests.blog_tests.BlogTests`
-    * `python3 runner.py --scope=tests.blog_tests.BlogTests.test_navigate_to_shameless_posts`
+    * `python3 runner.py --scope=tests.blog_tests.AccountTests`
+    * `python3 runner.py --scope=tests.blog_tests.AccountTests.test_navigate_to_shameless_posts`
 
 ## CircleCI setup
 - See `circleci/config.yml`.
