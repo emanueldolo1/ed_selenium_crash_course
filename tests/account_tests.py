@@ -1,14 +1,8 @@
-import string
-from lib2to3.pgen2 import driver
-
 import common.test_data
 from utilities.base_test import BaseTest
-from utilities.loggers import log_message
 from pages.account_page import AccountPage
 import time
-import random
 from common.helpers import get_timestamp
-from common import test_data
 
 
 class AccountTests(BaseTest):
@@ -36,6 +30,7 @@ class AccountTests(BaseTest):
         self.account_page.insect_store_register_button.click()
         print(self.account_page.insect_store_user_registered.text)
         self.assertTrue(self.account_page.insect_store_user_registered.text == "Input fields can't be blank")
+        time.sleep(2)
 
     def test_insect_shop_same_name(self):
         expected_message = "User already exists"
@@ -61,9 +56,9 @@ class AccountTests(BaseTest):
 
         self.account_page.navigate_to_page()
         self.account_page.insect_store_name_field.click()
-        self.account_page.insect_store_name_field.send_keys("username")
+        self.account_page.insect_store_name_field.send_keys(common.test_data.VALID_STORE_NAME)
         self.account_page.insect_store_password_field.click()
-        self.account_page.insect_store_password_field.send_keys("krivi_pass")
+        self.account_page.insect_store_password_field.send_keys(get_timestamp())
         self.account_page.insect_store_login_button.click()
         self.assertTrue(self.account_page.insect_store_user_registered.text == expected_message)
         time.sleep(2)
@@ -76,6 +71,7 @@ class AccountTests(BaseTest):
         self.account_page.insect_store_name_field.send_keys(get_timestamp())
         self.account_page.insect_store_password_field.click()
         self.account_page.insect_store_password_field.send_keys(get_timestamp())
+        self.account_page.insect_store_register_button.click()
         self.account_page.insect_store_delete_user.click()
-        time.sleep(2)
         self.assertTrue(self.account_page.insect_store_user_registered.text == expected_message)
+        time.sleep(2)
