@@ -1,0 +1,2 @@
+VALID_STORE_NAME = "Bugs"
+VALID_PASSWORD = "bugs"
