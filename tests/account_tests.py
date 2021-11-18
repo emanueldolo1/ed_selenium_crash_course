@@ -13,62 +13,92 @@ class AccountTests(BaseTest):
 
     def test_insect_shop_registration(self):
         expected_message = "User registered"
-
+        login_data = get_timestamp()
         self.account_page.navigate_to_page()
-        self.account_page.insect_store_name_field.click()
-        self.account_page.insect_store_name_field.send_keys(get_timestamp())
-        self.account_page.insect_store_password_field.click()
-        self.account_page.insect_store_password_field.send_keys(get_timestamp())
-        self.account_page.insect_store_register_button.click()
+
+        self.account_page.register(login_data)
+
         self.assertTrue(self.account_page.insect_store_user_registered.text == expected_message)
 
     def test_insect_shop_password(self):
+        login_data = get_timestamp()
         self.account_page.navigate_to_page()
-        self.account_page.insect_store_password_field.click()
-        self.account_page.insect_store_password_field.send_keys(get_timestamp())
+
+        self.account_page.insect_store_password_field.send_keys(login_data)
         self.account_page.insect_store_register_button.click()
+
         self.assertTrue(self.account_page.insect_store_user_registered.text == "Input fields can't be blank")
 
     def test_insect_shop_same_name(self):
         expected_message = "User already exists"
-
         self.account_page.navigate_to_page()
+
         self.account_page.insect_store_name_field.send_keys(common.test_data.VALID_STORE_NAME)
         self.account_page.insect_store_password_field.send_keys(common.test_data.VALID_PASSWORD)
+
         self.account_page.insect_store_register_button.click()
         self.assertTrue(self.account_page.insect_store_user_registered.text == expected_message)
 
     def test_insect_shop_wrong_password(self):
         expected_message = "Wrong password, try again."
-
+        login_data = get_timestamp()
         self.account_page.navigate_to_page()
-        self.account_page.insect_store_name_field.click()
+
         self.account_page.insect_store_name_field.send_keys(common.test_data.VALID_STORE_NAME)
-        self.account_page.insect_store_password_field.click()
-        self.account_page.insect_store_password_field.send_keys(get_timestamp())
+        self.account_page.insect_store_password_field.send_keys(login_data)
         self.account_page.insect_store_login_button.click()
+
         self.assertTrue(self.account_page.insect_store_user_registered.text == expected_message)
 
     def test_insect_shop_delete_user(self):
         expected_message = "User deleted!"
-
+        login_data = get_timestamp()
         self.account_page.navigate_to_page()
-        self.account_page.insect_store_name_field.click()
-        self.account_page.insect_store_name_field.send_keys(get_timestamp())
-        self.account_page.insect_store_password_field.click()
-        self.account_page.insect_store_password_field.send_keys(get_timestamp())
-        self.account_page.insect_store_register_button.click()
-        self.account_page.insect_store_delete_user.click()
+
+        self.account_page.register(login_data)
+        time.sleep(1)
+        self.account_page.delete_store_name(login_data)
         self.assertTrue(self.account_page.insect_store_user_registered.text == expected_message)
 
     def test_insect_shop_login(self):
-        expected_url = "https://qaworkshop.netlify.app/store/Bugs"
-
+        login_data = get_timestamp()
         self.account_page.navigate_to_page()
-        self.account_page.insect_store_name_field.click()
-        self.account_page.insect_store_name_field.send_keys(common.test_data.VALID_STORE_NAME)
-        self.account_page.insect_store_password_field.click()
-        self.account_page.insect_store_password_field.send_keys(common.test_data.VALID_PASSWORD)
-        self.account_page.insect_store_login_button.click()
-        time.sleep(2)
-        self.assertTrue(self.driver.current_url == expected_url)
+
+        self.account_page.login_and_register(login_data)
+
+        self.assertTrue(self.account_page.insect_store_load_sample_bugs_button)
+
+        self.account_page.delete_store_name(login_data)
+
+    def test_login_method(self):
+        login_data = get_timestamp()
+        self.account_page.navigate_to_page()
+
+        self.account_page.login_and_register(login_data)
+        self.assertTrue(self.account_page.insect_store_load_sample_bugs_button)
+
+        self.account_page.delete_store_name(login_data)
+
+    def test_provjera_buba(self):
+        login_data = get_timestamp()
+        self.account_page.navigate_to_page()
+
+        self.account_page.login_and_register(login_data)
+        self.account_page.insect_store_load_sample_bugs_button.click()
+        self.assertTrue(len(self.account_page.insect_store_lista_buba) > 1)
+        print (len(self.account_page.insect_store_lista_buba))
+
+        self.account_page.delete_store_name(login_data)
+
+    def test_micanja_buba(self):
+        login_data = get_timestamp()
+        self.account_page.navigate_to_page()
+
+        self.account_page.login_and_register(login_data)
+        self.account_page.insect_store_load_sample_bugs_button.click()
+        prijasnje_stanje_liste = len(self.account_page.insect_store_lista_buba)
+
+        self.account_page.insect_store_remove_bug_button.click()
+        self.assertTrue(len(self.account_page.insect_store_lista_buba) < prijasnje_stanje_liste)
+
+        self.account_page.delete_store_name(login_data)
