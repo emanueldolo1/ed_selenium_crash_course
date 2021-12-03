@@ -21,29 +21,12 @@ class AccountTests(BaseTest):
 
         self.account_page.delete_store_name(login_data)
 
-    def test_micanja_fly_bube(self):
-        bube = []
-        current_bug = []
-        indeks = 0
+    def test_remove_bug(self):
+        bug_to_remove = "Fly"
 
-        login_data = get_timestamp()
         self.account_page.navigate_to_page()
-
-        self.account_page.login_and_register(login_data)
+        self.account_page.login_and_register(get_timestamp())
         self.shop_page.insect_store_load_sample_bugs_button.click()
-        time.sleep(2)
-        bube = self.shop_page.insect_inventory_lista_buba
-        for bug in bube:
-            if (bug.get_attribute("value")) == "Fly":
-                current_bug = bug.get_attribute("value")
-                indeks = bube.index(bug)
-        time.sleep(5)
-        self.shop_page.insect_remove_bug_buttons[3].click()
-        time.sleep(5)
-        #Provjera da bube vise nema u Shopu
-        bube2 = self.shop_page.insect_store_lista_buba
-        for bug in bube2:
-            if bug.text.split()[0] == "Fly":
-                print("Fly ipak nije uklonjen")
-                break
-        print("Good job, mission acomplished!")
+        self.assertTrue(self.shop_page.is_bug_in_store(bug_to_remove))
+        self.shop_page.remove_bug(bug_to_remove)
+        self.assertTrue(self.shop_page.is_bug_in_store(bug_to_remove))
